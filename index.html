@@ -6,13 +6,14 @@
 </head>
 
 <body>
-    <div class="taskList">
-        <form class="currTask">
+    <div id="taskList">
+        <form class="currTask" id="placeholder">
             <p class="taskDesc"></p>
-            <button type="button" class="editB" onclick="edit()">edit</button>
-            <button type="button" class="cancelB" onclick="cancel()">X</button>
-            <button type="button" class="completeB" onclick="complete()">complete</button>
-
+            <button type="button" id="editB" onclick="edit()">edit</button>
+            <button type="button" id="cancelB" onclick="deleteB()">X</button>
+            <button type="button" id="completeB" onclick="complete()">complete</button>
+            <button type="button" id="done" onclick="done()">done</button>
+            <input type="text" id="editor" name="editor" >
         </form>
     </div>
     <div class="taskCreate">
