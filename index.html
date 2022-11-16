@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<head>
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <meta name="ToDoApp" content="ToDoapp" charset="UTF-8">
+</head>
+
+<body>
+    <div class="taskList">
+        <form class="currTask">
+            <p class="taskDesc"></p>
+            <button type="button" class="editB" onclick="edit()">edit</button>
+            <button type="button" class="cancelB" onclick="cancel()">X</button>
+            <button type="button" class="completeB" onclick="complete()">complete</button>
+
+        </form>
+    </div>
+    <div class="taskCreate">
+        <form class="task">
+            <input type="text" id="input" name="taskDesc" placeholder="task description">
+            <button type="button" class="addB" onclick="add()">+</button>
+            <button type="button" class="deleteB" onclick="deleteB()">-</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
