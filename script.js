@@ -8,11 +8,10 @@ var texts = [];
 var ids = [];
 var currentName;
 var currentID;
-var editB = document.getElementsByClassName("editB")[0];
+
 var cancelB = document.getElementsByClassName("cancelB")[0];
 var completeB = document.getElementsByClassName("completeB")[0];
-var doneB = document.getElementsByClassName("done")[0];
-var editor = document.getElementsByClassName("editor")[0];
+
 var clickedTask = document.getElementById("placeholder");
 
 var currTask = document.getElementById("placeholder");
@@ -120,34 +119,6 @@ function deleteB() {
 
 }
 
-/* function edit() {   
-    editor.value = clickedTask.text;
-}
-
-function done(){
-
-    clickedTask.appendChild(editB);
-    clickedTask.appendChild(cancelB);
-    clickedTask.appendChild(completeB);
-    currTask.appendChild(doneB);
-    currTask.appendChild(editor);
-    
-    clickedTask.text = editor.value;
-    console.log(editor);
-    var newText = editor;
-    var data = {
-        text: newText
-    }
-    xhttp = new XMLHttpRequest();
-
-    currentID = clickedTask.id;
-    xhttp.open("PUT", "https://cse204.work/todos/" + currentID, true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.setRequestHeader("x-api-key", key);
-    xhttp.send(JSON.stringify(data));
-
-}
- */
 function complete() {
     clickedTask.style.backgroundColor = 'pink'
     
