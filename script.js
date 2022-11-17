@@ -11,8 +11,8 @@ var currentID;
 var editB = document.getElementsByClassName("editB")[0];
 var cancelB = document.getElementsByClassName("cancelB")[0];
 var completeB = document.getElementsByClassName("completeB")[0];
-var doneB = document.getElementById("done");
-var editor = document.getElementById("editor");
+var doneB = document.getElementsByClassName("done")[0];
+var editor = document.getElementsByClassName("editor")[0];
 var clickedTask = document.getElementById("placeholder");
 
 var currTask = document.getElementById("placeholder");
@@ -47,18 +47,19 @@ function forHelper(allObjects) {
         temp.appendChild(tempText);
         temp.id = allObjects[x].id;
         temp.className = "taskObject";
-        temp.addEventListener("click", (event) =>{
+        temp.style.backgroundColor = 'lavender';
+        if(allObjects[x].completed == true){
+            temp.style.backgroundColor = 'pink';
+        }
+        temp.addEventListener("mouseenter", (event) =>{
             currentID = event.target.id;
-            clickedTask.backgroundColor = 'lavender';
-            event.target.style.backgroundColor = 'pink';
             currentName = event.target.innerHTML;
             clickedTask = event.target;
-            event.target.appendChild(editB);
-            event.target.appendChild(cancelB);
-            event.target.appendChild(completeB);
-
-
         });
+        
+        temp.appendChild(cancelB.cloneNode(true));
+        temp.appendChild(completeB.cloneNode(true));
+
         taskList.appendChild(temp);
         taskList.insertBefore(temp, currTask);
     }
@@ -92,18 +93,13 @@ function add() {
     newTask.className = "taskObject";
 
     
-    newTask.addEventListener("click", (event) => {
+    newTask.addEventListener("mouseenter", (event) => {
         currentID = event.target.id;
-        clickedTask.backgroundColor = 'lavender';
-        event.target.style.backgroundColor = 'pink';
         currentName = event.target.innerHTML;
         clickedTask = event.target;
-        event.target.appendChild(editB);
-        event.target.appendChild(cancelB);
-        event.target.appendChild(completeB);
-
-
     });
+    newTask.appendChild(cancelB.cloneNode(true));
+    newTask.appendChild(completeB.cloneNode(true));
 
     taskList.appendChild(newTask);
     taskList.insertBefore(newTask, currTask);
@@ -119,34 +115,13 @@ function deleteB() {
     xhttp.setRequestHeader("x-api-key", key);
     xhttp.send();
     if(clickedTask != document.getElementById("placeholder")){
-        currTask.appendChild(editB);
-        currTask.appendChild(cancelB);
-        currTask.appendChild(completeB);
-        currTask.appendChild(doneB);
-        currTask.appendChild(editor);
-
-
         clickedTask.remove();
     }
 
 }
 
-function edit() {   
+/* function edit() {   
     editor.value = clickedTask.text;
-
-    currTask.appendChild(editB);
-    currTask.appendChild(cancelB);
-    currTask.appendChild(completeB);
-    clickedTask.removeChild(editB);
-    clickedTask.removeChild(cancelB);
-    clickedTask.removeChild(completeB);
-
-
-    clickedTask.appendChild(doneB);
-    clickedTask.appendChild(editor);
-    currTask.removeChild(doneB);
-    currTask.removeChild(editor);
-
 }
 
 function done(){
@@ -158,13 +133,11 @@ function done(){
     currTask.appendChild(editor);
     
     clickedTask.text = editor.value;
-
+    console.log(editor);
     var newText = editor;
-
     var data = {
         text: newText
     }
-
     xhttp = new XMLHttpRequest();
 
     currentID = clickedTask.id;
@@ -174,14 +147,18 @@ function done(){
     xhttp.send(JSON.stringify(data));
 
 }
-
+ */
 function complete() {
+    clickedTask.style.backgroundColor = 'pink'
+    
     var data = {
         "completed": true
     }
+
     xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "https://cse204.work/todos/" + currentID, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.setRequestHeader("x-api-key", key);
     xhttp.send(JSON.stringify(data));
+
 }
