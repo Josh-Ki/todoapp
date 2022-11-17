@@ -8,9 +8,9 @@ var texts = [];
 var ids = [];
 var currentName;
 var currentID;
-var editB = document.getElementById("editB");
-var cancelB = document.getElementById("cancelB");
-var completeB = document.getElementById("completeB");
+var editB = document.getElementsByClassName("editB")[0];
+var cancelB = document.getElementsByClassName("cancelB")[0];
+var completeB = document.getElementsByClassName("completeB")[0];
 var doneB = document.getElementById("done");
 var editor = document.getElementById("editor");
 var clickedTask = document.getElementById("placeholder");
@@ -133,11 +133,20 @@ function deleteB() {
 
 function edit() {   
     editor.value = clickedTask.text;
+
     currTask.appendChild(editB);
     currTask.appendChild(cancelB);
     currTask.appendChild(completeB);
+    clickedTask.removeChild(editB);
+    clickedTask.removeChild(cancelB);
+    clickedTask.removeChild(completeB);
+
+
     clickedTask.appendChild(doneB);
     clickedTask.appendChild(editor);
+    currTask.removeChild(doneB);
+    currTask.removeChild(editor);
+
 }
 
 function done(){
@@ -149,8 +158,8 @@ function done(){
     currTask.appendChild(editor);
     
     clickedTask.text = editor.value;
-    console.log(clickedTask.id)
-    var newText = editor.value;
+
+    var newText = editor;
 
     var data = {
         text: newText
